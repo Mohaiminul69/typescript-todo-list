@@ -9,12 +9,15 @@ import ListItemButton from "@mui/material/ListItemButton";
 import "./home.css";
 
 const Home = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-
   useEffect(() => {
-    const getLocal = JSON.parse(localStorage.getItem("tasks") || "{}");
+    const getLocal = JSON.parse(localStorage.getItem("tasks") || "[]");
+    if (getLocal === "{}") {
+      console.log("valo hoise");
+    }
+    console.log(getLocal);
     setTodos(getLocal);
   }, []);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   interface Todo {
     id: number;
